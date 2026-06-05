@@ -67,6 +67,7 @@ app.post("/webhook", async (req, res) => {
                         reply = geminiRes.data.candidates[0].content.parts[0].text;
                     } catch (geminiErr) {
                         console.error("Erro Gemini:", geminiErr.response?.status, geminiErr.message);
+                        console.error("Detalhe:", JSON.stringify(geminiErr.response?.data));
                         if (geminiErr.response?.status === 429) {
                             reply = "Olá! Estou com muita procura neste momento. Por favor tente novamente em alguns segundos. 😊";
                         } else {
